@@ -1,0 +1,50 @@
+{
+  "android": {
+    "icons": {
+      "36": "resources/icons/android36.png",
+      "48": "resources/icons/android48.png",
+      "72": "resources/icons/android72.png",
+      "96": "resources/icons/android96.png"
+    },
+    "versionCode": 1
+  },
+  "appID": "platformer",
+  "dependencies": {
+    "devkit-core": "https://github.com/gameclosure/devkit-core#v4.0.7"
+  },
+  "description": "A sample platformer game built with the Game Closure DevKit",
+  "icon": "resources/icons/icon512.png",
+  "ios": {
+    "appleID": "12345678",
+    "bundleID": "example.bundle",
+    "icons": {
+      "114": "resources/icons/ios114.png",
+      "144": "resources/icons/ios144.png",
+      "57": "resources/icons/ios57.png",
+      "72": "resources/icons/ios72.png",
+      "renderGloss": true
+    },
+    "version": "1.0.0"
+  },
+  "sdkVersion": "release-0.1.31",
+  "shortName": "platformer",
+  "splash": {
+    "autoHide": true,
+    "landscape1536": "resources/splash/landscape1536.png",
+    "landscape768": "resources/splash/landscape768.png",
+    "portrait1024": "resources/splash/portrait1024.png",
+    "portrait1136": "resources/splash/portrait1136.png",
+    "portrait2048": "resources/splash/portrait2048.png",
+    "portrait480": "resources/splash/portrait480.png",
+    "portrait960": "resources/splash/portrait960.png"
+  },
+  "studio": {
+    "domain": "studio.example.com",
+    "name": "Example Studio Name",
+    "stagingDomain": "staging.example.com"
+  },
+  "supportedOrientations": [
+    "landscape"
+  ],
+  "title": "Platformer1"
+}
