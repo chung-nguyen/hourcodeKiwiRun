@@ -26,6 +26,8 @@ var BG_WIDTH = 1024;
 var BG_HEIGHT = 576;
 var DEFAULT_VALUE = false;
 
+var ingameImages = [];
+
 exports = Class(function(supr) {
 
 	// Game constants, for easy tweaking:
@@ -94,7 +96,8 @@ exports = Class(function(supr) {
 	// From this line is that the original game works
 	this.run = function() {
 		// After preloding certain assets...
-		loader.preload(["resources/images", "resources/audio/effects"], function () {
+        ingameImages.push("resources/audio/effects");
+		loader.preload(ingameImages, function () {
 
 			// Initialize everything.
 			this.resetState();
@@ -700,16 +703,20 @@ var EnemyBeeView = new Class([ui.View, Physics], function (supr) {
 var gameObjects = {};
 
 GLOBAL.themHinhNen = function(url) {  
+    url = 'resources/images/' + url;
     var bkg = game.parallaxView.addBackgroundView(new ui.ImageScaleView({
 				scaleMethod: 'cover',
-                image: 'resources/images/' + url
+                image: url
 			}));
+    ingameImages.push(url);
 };
 
-GLOBAL.themDayHinh = function (name, url) {
+GLOBAL.themDayHinh = function (name) {
     var urls = [];
     for (var i = 1; i < arguments.length; ++i) {
-        urls.push('resources/images/' + arguments[i]);
+        var img = 'resources/images/' + arguments[i];
+        urls.push(img);
+        ingameImages.push(img);
     }    
     
     var cfg = {
@@ -755,7 +762,9 @@ GLOBAL.themDamMay = function (name) {
     
     var urls = [];
     for (var i = 1; i < arguments.length; ++i) {
-        urls.push('resources/images/' + arguments[i]);
+        var img = 'resources/images/' + arguments[i];
+        urls.push(img);
+        ingameImages.push(img);
     }    
     
     var cfg = {
@@ -800,7 +809,9 @@ GLOBAL.datViTriTrongKhoang = function (name, lowerY, higherY) {
 GLOBAL.themDao = function () {
     var urls = [];
     for (var i = 0; i < arguments.length; ++i) {
-        urls.push('resources/images/' + arguments[i]);
+        var img = 'resources/images/' + arguments[i];
+        urls.push(img);
+        ingameImages.push(img);
     }
     
     var cfg = {
@@ -843,7 +854,9 @@ GLOBAL.datLucNhayNhanVat = function (velocity) {
 GLOBAL.themDoAn = function() {
     var urls = [];
     for (var i = 0; i < arguments.length; ++i) {
-        urls.push('resources/images/' + arguments[i]);
+        var img = 'resources/images/' + arguments[i];
+        urls.push(img);
+        ingameImages.push(img);
     }
     
     config.platform.object.images = urls;
