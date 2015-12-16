@@ -1,5 +1,6 @@
-exports = function() {
-
+exports = function() 
+{
+    
     themHinhNen("backgroundSky.png");
     
     themDayHinh ("cay 1", "fargroundTree1.png", "fargroundTree2.png", "fargroundTree3.png", "fargroundTree4.png");
@@ -46,6 +47,6 @@ exports = function() {
     
     batBangDiem();
     batNhac();
-    
+
 }
 

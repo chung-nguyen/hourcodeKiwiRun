@@ -702,7 +702,7 @@ var EnemyBeeView = new Class([ui.View, Physics], function (supr) {
 
 var gameObjects = {};
 
-GLOBAL.themHinhNen = function(url) {  
+GLOBAL.addBackground = GLOBAL.themHinhNen = function(url) {  
     url = 'resources/images/' + url;
     var bkg = game.parallaxView.addBackgroundView(new ui.ImageScaleView({
 				scaleMethod: 'cover',
@@ -711,7 +711,7 @@ GLOBAL.themHinhNen = function(url) {
     ingameImages.push(url);
 };
 
-GLOBAL.themDayHinh = function (name) {
+GLOBAL.addImagesStrip = GLOBAL.themDayHinh = function (name) {
     var urls = [];
     for (var i = 1; i < arguments.length; ++i) {
         var img = 'resources/images/' + arguments[i];
@@ -723,7 +723,8 @@ GLOBAL.themDayHinh = function (name) {
         urls: urls,
         lowerY: 0,
         higherY: 0,
-        gap: 0
+        gap: 0,
+        scale: 1.0
     };
     var layer = game.parallaxView.addLayer({
         distance: 20,
@@ -735,6 +736,7 @@ GLOBAL.themDayHinh = function (name) {
                 x: x,
                 y: layer.style.height - util.randInt(cfg.lowerY, cfg.higherY),            
                 autoSize: true,
+                scale: cfg.scale
             }, cfg));
             
             v.style.y -= v.style.height;            
@@ -745,20 +747,24 @@ GLOBAL.themDayHinh = function (name) {
     gameObjects[name] = cfg;
 };
 
-GLOBAL.datViTri = function (name, y) {    
+GLOBAL.setScale = GLOBAL.datKichThuoc = function (name, scale) {
+    gameObjects[name].scale = scale;
+}
+
+GLOBAL.setPosition = GLOBAL.datViTri = function (name, y) {    
     gameObjects[name].lowerY = y;  
     gameObjects[name].higherY = y;  
 };
 
-GLOBAL.datDoXa = function (name, distance) {
+GLOBAL.setDistance = GLOBAL.datDoXa = function (name, distance) {
     gameObjects[name].obj.setDistance(distance);
 }
 
-GLOBAL.doiDoTrongSuot = function (name, opacity) {
+GLOBAL.setOpacity = GLOBAL.doiDoTrongSuot = function (name, opacity) {
     gameObjects[name].opacity = opacity;
 };
 
-GLOBAL.themDamMay = function (name) {
+GLOBAL.addClouds = GLOBAL.themDamMay = function (name) {
     
     var urls = [];
     for (var i = 1; i < arguments.length; ++i) {
@@ -772,7 +778,8 @@ GLOBAL.themDamMay = function (name) {
         gap: 100,
         startingX: 0,
         lowerY: 0,
-        higherY: 0
+        higherY: 0,
+        scale: 1.0
     };
     
     var layer = game.parallaxView.addLayer({
@@ -785,7 +792,8 @@ GLOBAL.themDamMay = function (name) {
                 x: x + cfg.startingX,
                 y: layer.style.height - util.randInt(cfg.lowerY, cfg.higherY),
                 opacity: Math.random(),
-                autoSize: true
+                autoSize: true,
+                scale: cfg.scale
             });
             
             v.style.y -= v.style.height;
@@ -797,16 +805,16 @@ GLOBAL.themDamMay = function (name) {
     gameObjects[name] = cfg;
 };
 
-GLOBAL.doiKhoangCach = function (name, gap) {
+GLOBAL.setSpacing = GLOBAL.doiKhoangCach = function (name, gap) {
     gameObjects[name].gap = gap;  
 };
 
-GLOBAL.datViTriTrongKhoang = function (name, lowerY, higherY) {
+GLOBAL.setPositionInRange = GLOBAL.datViTriTrongKhoang = function (name, lowerY, higherY) {
     gameObjects[name].lowerY = lowerY;
     gameObjects[name].higherY = higherY;
 };
 
-GLOBAL.themDao = function () {
+GLOBAL.addIsland = GLOBAL.themDao = function () {
     var urls = [];
     for (var i = 0; i < arguments.length; ++i) {
         var img = 'resources/images/' + arguments[i];
@@ -821,17 +829,17 @@ GLOBAL.themDao = function () {
     gameObjects["platformIslands"] = cfg;
 };
 
-GLOBAL.datDoXaCuaDao = function (distance) {
+GLOBAL.setDistanceOfIslands = GLOBAL.datDoXaCuaDao = function (distance) {
     game.gameLayer.setDistance(distance);    
 }
 
-GLOBAL.datKhoangCachDao = function (gap) {
+GLOBAL.setSpacingOfIslands = GLOBAL.datKhoangCachDao = function (gap) {
     if (gameObjects["platformIslands"]) {
         gameObjects["platformIslands"].gap = gap;
     }
 }
 
-GLOBAL.themNhanVat = function (url) {
+GLOBAL.addCharacter = GLOBAL.themNhanVat = function (url) {
     game.playerCreated = true;
     config.character.url = 'resources/images/' + url;
     config.character.gravity = 1400;
@@ -842,16 +850,16 @@ GLOBAL.themNhanVat = function (url) {
 	config.character.world_acceleration = 15;
 }
 
-GLOBAL.datTrongLucNhanVat = function (gravity) {
+GLOBAL.setGravityOfCharacter = GLOBAL.datTrongLucNhanVat = function (gravity) {
     config.character.gravity = gravity;
     config.character.hold_gravity = config.character.gravity / 3;
 }
 
-GLOBAL.datLucNhayNhanVat = function (velocity) {
+GLOBAL.setJumpStrengthOfCharacter = GLOBAL.datLucNhayNhanVat = function (velocity) {
     config.character.jump_velocity = velocity;
 }
 
-GLOBAL.themDoAn = function() {
+GLOBAL.addPowerUp = GLOBAL.themDoAn = function() {
     var urls = [];
     for (var i = 0; i < arguments.length; ++i) {
         var img = 'resources/images/' + arguments[i];
@@ -864,7 +872,7 @@ GLOBAL.themDoAn = function() {
     game.starCreated = true;
 };
 
-GLOBAL.themKeThu = function () {
+GLOBAL.addEnemy = GLOBAL.themKeThu = function () {
     var urls = [];
     for (var i = 0; i < arguments.length; ++i) {
         urls.push('resources/images/' + arguments[i]);
@@ -878,14 +886,14 @@ GLOBAL.themKeThu = function () {
     game.enemyCreated = true;
 }
 
-GLOBAL.datXacSuatHienKeThu = function (rate) {
+GLOBAL.addChanceOfEnemiesAppearance = GLOBAL.datXacSuatHienKeThu = function (rate) {
     config.platform.enemy.rate = rate * 0.01;
 }
 
-GLOBAL.batNhac = function () {
+GLOBAL.turnMusicOn = GLOBAL.batNhac = function () {
 	game.soundCreated = true;
 }
 
-GLOBAL.batBangDiem = function(opts) {
+GLOBAL.turnScoreOn = GLOBAL.batBangDiem = function(opts) {
 	game.scoreCreated = true;
 }
