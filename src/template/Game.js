@@ -378,6 +378,9 @@ exports = Class(function(supr) {
 				defaultAnimation: 'run',
 				autoStart: true,
 			});
+          
+            this.player.style.anchorX = this.player.style.width * 0.5;
+            this.player.style.anchorY = this.player.style.height * 0.5;
 			
 			// The player can double-jump, so the first jump == 1, second jump == 2
 			this.player.jumpingLevel = 1;
@@ -390,7 +393,7 @@ exports = Class(function(supr) {
 			Physics.addToView(this.player, {
 				hitbox: {
 					x: 0,
-					y: 20,
+					y: this.player.style.height - 80,
 					width: 80,
 					height: 80,
 				}
@@ -661,7 +664,7 @@ var EnemyBeeView = new Class([ui.View, Physics], function (supr) {
         var n = Math.random() * config.platform.enemy.images.length | 0;
         var enemyImage = config.platform.enemy.images[n];
         
-        var spr = game.spriteSheet[enemyImage + "_flying_0001.png"];
+        //var spr = game.spriteSheet[enemyImage + "_flying_0001.png"];
         //var sprSize = spr[0].w;
         var sprSize = 100;
         
@@ -679,7 +682,8 @@ var EnemyBeeView = new Class([ui.View, Physics], function (supr) {
             zIndex: 100,
 			x: 0,
 			y: 0,
-            autoSize: true,
+            width: sprSize,
+            height: sprSize,
 			url: enemyImage,
 			defaultAnimation: "flying",
 			autoStart: true,

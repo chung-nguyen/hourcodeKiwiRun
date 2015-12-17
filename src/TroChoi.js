@@ -36,14 +36,14 @@ exports = function()
     datDoXaCuaDao(7);
     datKhoangCachDao(200);
     
-    themNhanVat("avatarKiwiAce/kiwiAce");
+    themNhanVat("characters/penguin2");
     datTrongLucNhanVat(1400);
     datLucNhayNhanVat(500);    
 
     themDoAn("star.png", "cherry.png");
 
-    themKeThu("enemies/poop", "enemies/bee");
-    datXacSuatHienKeThu(50);
+    themKeThu("enemies/alien", "enemies/chicken");
+    datXacSuatHienKeThu(100);
     
     batBangDiem();
     batNhac();
