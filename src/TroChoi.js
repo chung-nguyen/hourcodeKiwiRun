@@ -19,7 +19,7 @@ exports = function()
     datDoXa("co 1", 20);
     
     themDayHinh ("co 2", "midgroundBrush.png");
-    datDoXa("co 2", 25);
+    datDoXa("co 2", 18);
     
     themDamMay("dam may", "cloud1.png", "cloud2.png", "cloud3.png", "cloud4.png", "cloud5.png");
     doiKhoangCach("dam may", 100);

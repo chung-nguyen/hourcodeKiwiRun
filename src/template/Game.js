@@ -97,17 +97,18 @@ exports = Class(function(supr) {
 	this.run = function() {
 		// After preloding certain assets...
         ingameImages.push("resources/audio/effects");
-		loader.preload(ingameImages, function () {
+        ingameImages.push("resources/images/numbers");
+        loader.preload(ingameImages, function () {
 
 			// Initialize everything.
 			this.resetState();
 			this.setupParallaxView();
-			this.setupInput();			
+			this.setupInput();
 			this.setupUILayer();
 			this.loadSound();
             this.setupPlayer();
 			this.startGame();
-			
+
 			Physics.start();
 
 			// this flag allows the tick function below to begin stepping.
@@ -447,7 +448,8 @@ exports = Class(function(supr) {
             
             var spr = this.spriteSheet[starImage];                 
 			var starHeight = util.randInt(50, 200);
-			var starSize = spr[0].w;
+			//var starSize = spr[0].w;
+            var starSize = 50;
 			var numStars = size / starSize - 2;
 			var maxPerRow = platform.style.width / starSize | 0;
 			var grid = util.choice(starGrids); // choose a random arrangement of stars
@@ -660,7 +662,8 @@ var EnemyBeeView = new Class([ui.View, Physics], function (supr) {
         var enemyImage = config.platform.enemy.images[n];
         
         var spr = game.spriteSheet[enemyImage + "_flying_0001.png"];
-        var sprSize = spr[0].w;
+        //var sprSize = spr[0].w;
+        var sprSize = 100;
         
 		opts.group = "bee";
 		opts.hitbox = {
@@ -848,6 +851,8 @@ GLOBAL.addCharacter = GLOBAL.themNhanVat = function (url) {
 	config.character.roll_velocity = 700;
 	config.character.initial_speed = 400;
 	config.character.world_acceleration = 15;
+  
+    ingameImages.push(config.character.url);
 }
 
 GLOBAL.setGravityOfCharacter = GLOBAL.datTrongLucNhanVat = function (gravity) {
@@ -875,7 +880,9 @@ GLOBAL.addPowerUp = GLOBAL.themDoAn = function() {
 GLOBAL.addEnemy = GLOBAL.themKeThu = function () {
     var urls = [];
     for (var i = 0; i < arguments.length; ++i) {
-        urls.push('resources/images/' + arguments[i]);
+        var img = 'resources/images/' + arguments[i];
+        urls.push(img);
+        ingameImages.push(img);
     }
     
     config.platform.enemy.images = urls;
