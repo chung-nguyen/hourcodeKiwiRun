@@ -719,39 +719,43 @@ GLOBAL.addBackground = GLOBAL.themHinhNen = function(url) {
 };
 
 GLOBAL.addImagesStrip = GLOBAL.themDayHinh = function (name) {
-    var urls = [];
+
+    if (gameObjects[name] == null) {
+        gameObjects[name] = {
+            urls: [],
+            lowerY: 0,
+            higherY: 0,
+            gap: 0,
+            scale: 1.0
+        };
+    }
+     
+    var urls = gameObjects[name].urls;
     for (var i = 1; i < arguments.length; ++i) {
         var img = 'resources/images/' + arguments[i];
         urls.push(img);
         ingameImages.push(img);
     }    
-    
-    var cfg = {
-        urls: urls,
-        lowerY: 0,
-        higherY: 0,
-        gap: 0,
-        scale: 1.0
-    };
+               
+    var cfg = gameObjects[name];
     var layer = game.parallaxView.addLayer({
         distance: 20,
         populate: function (layer, x) {
             var size = Math.random() * cfg.urls.length | 0;
             var v = layer.obtainView(ui.ImageView, merge({
                 superview: layer,
-                image: urls[size],
+                image: cfg.urls[size],
                 x: x,
                 y: layer.style.height - util.randInt(cfg.lowerY, cfg.higherY),            
                 autoSize: true,
                 scale: cfg.scale
             }, cfg));
-            
+
             v.style.y -= v.style.height;            
             return v.style.width + (Math.random() * 3 + 2) * cfg.gap;;
         }
     });
     cfg.obj = layer;
-    gameObjects[name] = cfg;
 };
 
 GLOBAL.setScale = GLOBAL.datKichThuoc = function (name, scale) {
@@ -773,22 +777,25 @@ GLOBAL.setOpacity = GLOBAL.doiDoTrongSuot = function (name, opacity) {
 
 GLOBAL.addClouds = GLOBAL.themDamMay = function (name) {
     
-    var urls = [];
+    if (gameObjects[name] == null) {
+        gameObjects[name] = {
+            urls: [],
+            gap: 100,
+            startingX: 0,
+            lowerY: 200,
+            higherY: 500,
+            scale: 1.0
+        };
+    }
+    
+    var cfg = gameObjects[name];    
+    var urls = cfg.urls;
     for (var i = 1; i < arguments.length; ++i) {
         var img = 'resources/images/' + arguments[i];
         urls.push(img);
         ingameImages.push(img);
     }    
-    
-    var cfg = {
-        urls: urls,
-        gap: 100,
-        startingX: 0,
-        lowerY: 0,
-        higherY: 0,
-        scale: 1.0
-    };
-    
+        
     var layer = game.parallaxView.addLayer({
         distance: 5,
         populate: function (layer, x) {
@@ -809,7 +816,6 @@ GLOBAL.addClouds = GLOBAL.themDamMay = function (name) {
     });
     
     cfg.obj = layer;
-    gameObjects[name] = cfg;
 };
 
 GLOBAL.setSpacing = GLOBAL.doiKhoangCach = function (name, gap) {
@@ -822,18 +828,19 @@ GLOBAL.setPositionInRange = GLOBAL.datViTriTrongKhoang = function (name, lowerY,
 };
 
 GLOBAL.addIsland = GLOBAL.themDao = function () {
-    var urls = [];
+    if (gameObjects["platformIslands"] == null) {
+        gameObjects["platformIslands"] = {
+            urls: [],
+            gap: 100
+        };
+    }
+    
+    var urls = gameObjects["platformIslands"].urls;
     for (var i = 0; i < arguments.length; ++i) {
         var img = 'resources/images/' + arguments[i];
         urls.push(img);
         ingameImages.push(img);
     }
-    
-    var cfg = {
-        urls: urls,
-        gap: 100
-    };
-    gameObjects["platformIslands"] = cfg;
 };
 
 GLOBAL.setDistanceOfIslands = GLOBAL.datDoXaCuaDao = function (distance) {
@@ -869,35 +876,38 @@ GLOBAL.setJumpStrengthOfCharacter = GLOBAL.datLucNhayNhanVat = function (velocit
 }
 
 GLOBAL.addPowerUp = GLOBAL.themDoAn = function() {
-    var urls = [];
+    if (config.platform.object.images == null) {
+        config.platform.object.images = [];
+    }
+  
+    var urls = config.platform.object.images;
     for (var i = 0; i < arguments.length; ++i) {
         var img = 'resources/images/' + arguments[i];
         urls.push(img);
         ingameImages.push(img);
     }
     
-    config.platform.object.images = urls;
     config.platform.object.collision = "star";
     game.starCreated = true;
 };
 
 GLOBAL.addEnemy = GLOBAL.themKeThu = function () {
-    var urls = [];
+  
+    if (config.platform.enemy.images == null) {
+        config.platform.enemy.images = [];
+    }
+    
+    var urls = config.platform.enemy.images;
     for (var i = 0; i < arguments.length; ++i) {
         var img = 'resources/images/' + arguments[i];
         urls.push(img);
         ingameImages.push(img);
     }
-    
-    config.platform.enemy.images = urls;
-    config.platform.enemy.startTime = 5;
-    config.platform.enemy.rate = 0.5;
-    config.platform.enemy.collision = "bee";
-    config.platform.enemy.defaultAnimation = "flying";
+  
     game.enemyCreated = true;
 }
 
-GLOBAL.addChanceOfEnemiesAppearance = GLOBAL.datXacSuatHienKeThu = function (rate) {
+GLOBAL.setChanceOfEnemiesAppearance = GLOBAL.datXacSuatHienKeThu = function (rate) {
     config.platform.enemy.rate = rate * 0.01;
 }
 

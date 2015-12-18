@@ -22,11 +22,11 @@ exports = {
 		object: {
 			image: "resources/images/star.png",
 			collision: "star"
-		},
+		},      
 		enemy: {
 			image: "resources/images/enemies/bee",
 			defaultAnimation: "flying",
-			startTime: 0,
+			startTime: 3,
 			rate: 1,
 			collision: "bee"
 		}
