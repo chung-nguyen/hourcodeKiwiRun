@@ -710,6 +710,10 @@ var EnemyBeeView = new Class([ui.View, Physics], function (supr) {
 var gameObjects = {};
 
 GLOBAL.addBackground = GLOBAL.themHinhNen = function(url) {  
+    if (url.indexOf('.') < 0) {
+      url = url + '.png';
+    }
+  
     url = 'resources/images/' + url;
     var bkg = game.parallaxView.addBackgroundView(new ui.ImageScaleView({
 				scaleMethod: 'cover',
@@ -733,6 +737,9 @@ GLOBAL.addImagesStrip = GLOBAL.themDayHinh = function (name) {
     var urls = gameObjects[name].urls;
     for (var i = 1; i < arguments.length; ++i) {
         var img = 'resources/images/' + arguments[i];
+        if (img.indexOf('.') < 0) {
+            img = img + '.png';
+        }
         urls.push(img);
         ingameImages.push(img);
     }    
@@ -792,6 +799,9 @@ GLOBAL.addClouds = GLOBAL.themDamMay = function (name) {
     var urls = cfg.urls;
     for (var i = 1; i < arguments.length; ++i) {
         var img = 'resources/images/' + arguments[i];
+        if (img.indexOf('.') < 0) {
+            img = img + '.png';
+        }
         urls.push(img);
         ingameImages.push(img);
     }    
@@ -838,6 +848,9 @@ GLOBAL.addIsland = GLOBAL.themDao = function () {
     var urls = gameObjects["platformIslands"].urls;
     for (var i = 0; i < arguments.length; ++i) {
         var img = 'resources/images/' + arguments[i];
+        if (img.indexOf('.') < 0) {
+            img = img + '.png';
+        }
         urls.push(img);
         ingameImages.push(img);
     }
@@ -887,6 +900,9 @@ GLOBAL.addPowerUp = GLOBAL.themDoAn = function() {
     var urls = config.platform.object.images;
     for (var i = 0; i < arguments.length; ++i) {
         var img = 'resources/images/' + arguments[i];
+        if (img.indexOf('.') < 0) {
+            img = img + '.png';
+        }
         urls.push(img);
         ingameImages.push(img);
     }
