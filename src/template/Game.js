@@ -854,6 +854,10 @@ GLOBAL.setSpacingOfIslands = GLOBAL.datKhoangCachDao = function (gap) {
 }
 
 GLOBAL.addCharacter = GLOBAL.themNhanVat = function (url) {
+    if (url.indexOf('/') < 0) {
+        url = 'characters/' + url;
+    }
+    
     game.playerCreated = true;
     config.character.url = 'resources/images/' + url;
     config.character.gravity = 1400;
@@ -899,7 +903,12 @@ GLOBAL.addEnemy = GLOBAL.themKeThu = function () {
     
     var urls = config.platform.enemy.images;
     for (var i = 0; i < arguments.length; ++i) {
-        var img = 'resources/images/' + arguments[i];
+        var img;
+        if (arguments[i].indexOf('/') >= 0) {
+            img = 'resources/images/' + arguments[i];
+        } else {
+            img = 'resources/images/enemies/' + arguments[i];
+        }
         urls.push(img);
         ingameImages.push(img);
     }

@@ -1,12 +1,12 @@
 exports = function() 
 {
-  themHinhNen("backgrounds/candy_background.png") 
-  themDayHinh("Luoi.png","midgroundBrush3.png")
-themDao("platforms/more_platform_2.png")  
-themNhanVat("characters/penguin2")  
-themDoAn("foods/cupcake.png","foods/honey.png")  
+  themHinhNen("backgroundCandy.png") 
+  themDayHinh("Luoi.png","midgroundCloud1.png")
+themDao("platformBig.png")  
+themNhanVat("crane2")  
+themDoAn("foodCupcake.png","foodHoney.png")  
 batBangDiem()  
-themKeThu("enemies/chicken","enemies/hamster")  
+themKeThu("alien","enemies/hamster")  
 batNhac()  
 
 themDamMay("may", "cloud1.png");
