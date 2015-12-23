@@ -1,41 +1,41 @@
 exports = function() 
 {
-    themHinhNen("backgroundSky.png");
+    addBackground("backgroundSky.png");
 
-    themDayHinh("co 1", "fargroundBrush.png");
-    doiDoTrongSuot("co 1", 0.5);
-    datViTri("co 1", 30);
-    datDoXa("co 1", 20);
+    addBackgroundLayer("co 1", "fargroundBrush.png");
+    setOpacity("co 1", 0.5);
+    setPosition("co 1", 30);
+    setDistance("co 1", 20);
     
-    themDayHinh ("co 2", "midgroundBrush.png");
-    datDoXa("co 2", 25);
+    addBackgroundLayer ("co 2", "midgroundBrush.png");
+    setDistance("co 2", 25);
     
-    themDamMay("dam may", "cloud1.png", "cloud2.png", "cloud3.png", "cloud4.png", "cloud5.png");
-    doiKhoangCach("dam may", 100);
-    datViTriTrongKhoang("dam may", 50, 400);
-    datDoXa("dam may", 5);
+    addClouds("dam may", "cloud1.png", "cloud2.png", "cloud3.png", "cloud4.png", "cloud5.png");
+    setSpacing("dam may", 100);
+    setPositionInRange("dam may", 50, 400);
+    setDistance("dam may", 5);
     
-    themDayHinh("nuoc 1", "waterFast.png");
-    datDoXa("nuoc 1", 10);
-    doiDoTrongSuot("nuoc 1", 0.5);
-    themDayHinh("nuoc 2", "waterSlow.png");
-    datDoXa("nuoc 2", 5);
+    addBackgroundLayer("nuoc 1", "waterFast.png");
+    setDistance("nuoc 1", 10);
+    setOpacity("nuoc 1", 0.5);
+    addBackgroundLayer("nuoc 2", "waterSlow.png");
+    setDistance("nuoc 2", 5);
   
-    themDao("platform256.png", "platform512.png", "platform768.png", "platform1024.png");
-    datDoXaCuaDao(7);
-    datKhoangCachDao(200);
+    addIsland("platform256.png", "platform512.png", "platform768.png", "platform1024.png");
+    setDistanceOfIslands(7);
+    setSpacingOfIslands(200);
     
-    themNhanVat("avatarKiwiAce/kiwiAce");
-    datTrongLucNhanVat(1400);
-    datLucNhayNhanVat(500);    
+    addCharacter("kiwiAce");
+    setGravityOfCharacter(1400);
+    setJumpStrengthOfCharacter(500);    
 
-    themDoAn("star.png", "cherry.png");
+    addPowerUp("foodstar.png", "foodcherry.png");
 
-    themKeThu("enemies/poop", "enemies/bee");
-    datXacSuatHienKeThu(50);
+    addEnemy("hamster", "bee");
+    setChanceOfEnemyAppearance(50);
     
-    batBangDiem();
-    batNhac();
+    turnScoreOn();
+    turnMusicOn();
   
 
     

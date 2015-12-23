@@ -722,7 +722,7 @@ GLOBAL.addBackground = GLOBAL.themHinhNen = function(url) {
     ingameImages.push(url);
 };
 
-GLOBAL.addImagesStrip = GLOBAL.themDayHinh = function (name) {
+GLOBAL.addBackgroundLayer = GLOBAL.themDayHinh = function (name) {
 
     if (gameObjects[name] == null) {
         gameObjects[name] = {
@@ -932,7 +932,7 @@ GLOBAL.addEnemy = GLOBAL.themKeThu = function () {
     game.enemyCreated = true;
 }
 
-GLOBAL.setChanceOfEnemiesAppearance = GLOBAL.datXacSuatHienKeThu = function (rate) {
+GLOBAL.setChanceOfEnemyAppearance = GLOBAL.datXacSuatHienKeThu = function (rate) {
     config.platform.enemy.rate = rate * 0.01;
 }
 
